@@ -36,14 +36,9 @@ def main():
         print("2. Criar tabelas")
         print("3. Popular tabelas")
         print("4. Criar acessos")
-        print("5. Criar views")
-        print("6. Criar materialized views")
-        print("7. Criar stored procedures")
-        # print("8. Criar Indexação")
-        print("9. Executar backup completo")
-        print("10. Executar backup incremental")
-        print("11. Dropar objetos do banco de dados")
-        print("12. Sair")
+        print("5. Executar backup completo")
+        print("6. Dropar objetos do banco de dados")
+        print("7. Sair")
             
         choice = input("Opção: ")
 
@@ -57,20 +52,10 @@ def main():
             elif choice == '4':
                 create_access()
             elif choice == '5':
-                create_views()
-            elif choice == '6':
-                create_materialized_views()
-            elif choice == '7':
-                create_stored_procedures()
-            # elif choice == '8':
-            #     # create_index()
-            elif choice == '9':
                 full_backup()
-            elif choice == '10':
-                incremental_backup()
-            elif choice == '11':
+            elif choice == '6':
                 drop_objects()
-            elif choice == '12':
+            elif choice == '7':
                 break
             else:
                 print("Opção inválida!")
@@ -81,10 +66,10 @@ def create_tables_and_constraints():
     """Cria as tabelas no banco de dados."""
     try:
         # Leitura das queries dos arquivos fornecidos
-        with open("rede_social_v3\queries\criar_tabelas.sql", "r", encoding="utf8") as f:
+        with open("DDL/criar_tabelas.sql", "r", encoding="utf8") as f:
             create_table_queries = f.read().split(";")
             
-        with open("rede_social_v3\queries\constraints.sql", "r", encoding="utf8") as f:
+        with open("DDL/constraints.sql", "r", encoding="utf8") as f:
             create_constraint_queries = f.read().split(";")
 
         # Execução das queries
@@ -107,47 +92,47 @@ def populate_tables():
 
         populate_table_from_csv(
             table_name="tb_usuario",
-            csv_file="rede_social_v3/csv/tb_usuario.csv",
+            csv_file="csv/tb_usuario.csv",
             columns=["nome","email","senha","data_criacao"]
         )
         populate_table_from_csv(
             table_name="tb_conexao",
-            csv_file="rede_social_v3/csv/tb_conexao.csv",
+            csv_file="csv/tb_conexao.csv",
             columns=["id_seguidor","id_seguido","data_conexao"]
         )
         populate_table_from_csv(
             table_name="tb_texto",
-            csv_file="rede_social_v3/csv/tb_texto.csv",
+            csv_file="csv/tb_texto.csv",
             columns=["conteudo_texto"]
         )
         populate_table_from_csv(
             table_name="tb_video",
-            csv_file="rede_social_v3/csv/tb_video.csv",
+            csv_file="csv/tb_video.csv",
             columns=["url_video"]
         )
         populate_table_from_csv(
             table_name="tb_img",
-            csv_file="rede_social_v3/csv/tb_img.csv",
+            csv_file="csv/tb_img.csv",
             columns=["url_img"]
         )
         populate_table_from_csv(
             table_name="tb_link",
-            csv_file="rede_social_v3/csv/tb_link.csv",
+            csv_file="csv/tb_link.csv",
             columns=["url_link"]
         )
         populate_table_from_csv(
             table_name="tb_conteudo",
-            csv_file="rede_social_v3/csv/tb_conteudo.csv",
+            csv_file="csv/tb_conteudo.csv",
             columns=["titulo", "data_criacao", "id_texto", "id_video", "id_img", "id_link"]	
         )
         populate_table_from_csv(
             table_name="tb_publicacao",
-            csv_file="rede_social_v3/csv/tb_publicacao.csv",
+            csv_file="csv/tb_publicacao.csv",
             columns=["id_conteudo","data_publicacao"]
         )
         populate_table_from_csv(
             table_name="tb_faz_uma",
-            csv_file="rede_social_v3/csv/tb_faz_uma.csv",
+            csv_file="csv/tb_faz_uma.csv",
             columns=["id_usuario","id_publicacao", "papel", "data_publicacao"]
         )
 

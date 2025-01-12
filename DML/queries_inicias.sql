@@ -7,9 +7,9 @@ INSERT INTO tb_conexao (id_seguidor, id_seguido) VALUES (1, 2);
 INSERT INTO tb_conexao (id_seguidor, id_seguido) VALUES (2, 1);
 
 -- Inclusão de conteúdos
-INSERT INTO tb_conteudo (titulo, id_texto) VALUES ('Primeiro conteúdo', 102);
-INSERT INTO tb_conteudo (titulo, id_texto) VALUES ('abrobinha', 105);
-INSERT INTO tb_conteudo (titulo, id_texto) VALUES ('abrobinha', 107);
+INSERT INTO tb_conteudo (titulo, id_texto) VALUES ('Primeiro conteúdo', 1);
+INSERT INTO tb_conteudo (titulo, id_texto) VALUES ('abrobinha', 2);
+INSERT INTO tb_conteudo (titulo, id_texto) VALUES ('abrobinha', 3);
 
 -- Inclusão de publicações
 INSERT INTO tb_publicacao (id_conteudo) VALUES (1);

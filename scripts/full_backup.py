@@ -36,8 +36,8 @@ def full_backup():
     cur = conn.cursor()
 
     # Data e hora do backup
-    data_hora = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-    arquivo_backup = os.path.join(DIR_LOCAL, f"full_backup_{data_hora}.sql")
+    # data_hora = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+    arquivo_backup = os.path.join(DIR_LOCAL, f"full_backup.sql")
 
     # Comando pg_dump
     comando = f"pg_dump -h {conn_params['host']} -p {conn_params['port']} -U {conn_params['user']} -Fc {conn_params['database']} > {arquivo_backup}"
@@ -45,7 +45,7 @@ def full_backup():
 
     print(f"Full backup realizado com sucesso em {arquivo_backup}")
 
-    # Limpeza (opcional): remover backups antigos do disco local
+    # Limpeza: remover backups antigos do disco local
     for arquivo in os.listdir(DIR_LOCAL):
       if arquivo.startswith("full_backup_") and arquivo.endswith(".sql"):
         caminho_arquivo = os.path.join(DIR_LOCAL, arquivo)

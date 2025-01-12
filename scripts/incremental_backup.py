@@ -33,8 +33,8 @@ def incremental_backup():
   print(DIR_LOCAL)
   try:
     # Data e hora do backup
-    data_hora = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-    arquivo_backup = os.path.join(DIR_LOCAL, f"incremental_backup_{data_hora}.tar")
+    # data_hora = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+    arquivo_backup = os.path.join(DIR_LOCAL, f"incremental_backup.tar")
 
     # Comando pg_basebackup
     comando = [
@@ -51,7 +51,7 @@ def incremental_backup():
 
     # Limpeza (opcional): remover backups antigos do disco local
     for arquivo in os.listdir(DIR_LOCAL):
-      if arquivo.startswith("incremental_backup_") and arquivo.endswith(".tar"):
+      if arquivo.startswith("incremental_backup") and arquivo.endswith(".tar"):
         caminho_arquivo = os.path.join(DIR_LOCAL, arquivo)
         if os.path.getmtime(caminho_arquivo) < time.time() - (14 * 24 * 60 * 60):  # 14 dias em segundos
           os.remove(caminho_arquivo)
